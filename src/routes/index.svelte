@@ -1,23 +1,18 @@
-<script>
-    import supabase from '$lib/db'
-    async function getData() {
-      const { data, error } = await supabase.from('teams').select()
-      console.log(data)
-      if (error) throw new Error(error.message)
-      
-      return data
-  }
+<script context="module">
+  // see https://kit.svelte.dev/docs#loading
+  export const load = async ({ fetch, session }) => {
+    // redirect to login if user is not logged in
+    if (!session?.user?.id) {
+      return {
+        status: 301,
+        redirect: '/login'
+      };
+    }
+  };
 </script>
+
+
 
 <h1>Teams</h1>
 
-{#await getData()}
-  <p>Fetching data...</p>
-{:then data}
-  {#each data as team}
-    <li>{team.name}</li>
-  {/each}
-{:catch error}
-  <p>Something went wrong while fetching the data:</p>
-  <pre>{error}</pre>
-{/await}
+

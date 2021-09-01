@@ -1,5 +1,5 @@
 <script>
-    import { session } from '$app/stores';
+    import { page, session } from '$app/stores';
     import { supabase } from '$lib/db';
     import { setAuthCookie, unsetAuthCookie } from '$lib/utils/session';
 
@@ -14,3 +14,10 @@
     }
     });
 </script>
+
+<main>
+    {#if $page.query.get('magic_link')}
+        <span style="text-align: center;">Check your email for login link!</span>
+    {/if}
+    <slot />
+</main>

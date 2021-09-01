@@ -3,7 +3,7 @@ import * as cookie from 'cookie';
 /**
  * Converts a SvelteKit request to a Express compatible request.
  * Supabase expects the cookies to be parsed.
- * @param {SvelteKit.Request} req
+ * @param {Express.Request} req
  * @returns Express.Request
  */
 export function toExpressRequest(req) {

@@ -1,3 +1,6 @@
+import { auth, supabase } from '$lib/db';
+import { toExpressRequest, toExpressResponse, toSvelteKitResponse } from '$lib/utils/expressify';
+
 export const handle = async ({ request, resolve }) => {
     // Parses `req.headers.cookie` adding them as attribute `req.cookies, as `auth.api.getUserByCookie` expects parsed cookies on attribute `req.cookies`
     const expressStyleRequest = toExpressRequest(request);
