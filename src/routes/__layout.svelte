@@ -6,7 +6,6 @@
 
     let loading = false;
     let email;
-    let password;
 
     async function signOut() {
         const { error } = await supabase.auth.signOut()
@@ -15,8 +14,7 @@
     async function signIn() {
       loading = true;
       let { error } = await supabase.auth.signIn({
-        email,
-        password
+        email
       });
       if (error) {
         loading = false;
@@ -24,9 +22,7 @@
         return;
       }
       let redirect = '/';
-      if (!password) {
-        redirect = `${redirect}?magic_link=true`;
-      }
+      redirect = `${redirect}?magic_link=true`;
       goto(redirect);
     }
 </script>
@@ -38,7 +34,7 @@
     <span style="text-align: center;">Check your email for login link!</span>
     {:else}
     <div class="content">
-        <h1>Login</h1>
+        <h1>Enter Your Email to Receive Login Link</h1>
       
         <form on:submit|preventDefault={signIn}>
           <div>
@@ -49,14 +45,6 @@
               placeholder="Email"
               required
               bind:value={email}
-            />
-          </div>
-          <div>
-            <input
-              id="password"
-              type="password"
-              placeholder="Password (optional)"
-              bind:value={password}
             />
           </div>
       
