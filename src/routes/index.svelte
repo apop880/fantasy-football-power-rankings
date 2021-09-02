@@ -8,7 +8,7 @@
     }
 </script>
 
-<a href="" on:click={signOut}>Sign Out</a>
+<button on:click={signOut}>Sign Out</button>
 
 <h1>Teams</h1>
 
