@@ -1,4 +1,7 @@
 <script>
+    import Nav from '$lib/Nav.svelte'
+
+    import "../app.postcss"
     import supabase from '$lib/db'
     import { session } from '$app/stores'
     import { browser } from '$app/env'
@@ -13,8 +16,7 @@
       })
     }
 </script>
-  
+
+<Nav />
 
 <slot />
-
-
