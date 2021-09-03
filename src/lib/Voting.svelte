@@ -62,6 +62,7 @@
 
 {#if !submitted}
 <h1 class="text-center text-xl">Vote for {#if week === 0}Preseason{:else}Week {week}{/if} Power Rankings</h1>
+<h2 class="text-center text-lg">Drag and Drop to Rank Teams</h2>
 <div class="grid grid-cols-1 justify-center justify-items-center gap-y-1">
     {#each teams as n, index  (n.name)}
       <div class="w-4/5 text-center bg-gray-100 border-2 border-gray-600 rounded-md hover:bg-gray-800 hover:text-white"
