@@ -1,4 +1,5 @@
 import preprocess from "svelte-preprocess";
+const vercel = require('@sveltejs/adapter-vercel');
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
     kit: {
