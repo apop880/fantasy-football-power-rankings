@@ -3,6 +3,15 @@
 
     import supabase from '$lib/db'
 
+    async function getRole() {
+        const { data, error } = await supabase
+        .from('user_access')
+        .select('role')
+        .eq('id', $session.user.id)
+        if (error) throw new Error(error.message)
+        return data[0]['role']
+    }
+
     async function signOut() {
         const { error } = await supabase.auth.signOut()
     }
@@ -15,6 +24,14 @@
     </div>
     {#if $session?.user}
     <div>
+    {#await getRole() then role}
+        {#if role > 0}
+        <a href="/editor" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-blue-900 hover:bg-white mt-4 lg:mt-0">Editor</a>
+        {/if}
+        {#if role === 2}
+        <a href="/admin" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-blue-900 hover:bg-white mt-4 lg:mt-0">Admin</a>
+        {/if}
+    {/await}
     <button on:click={signOut} class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-blue-900 hover:bg-white mt-4 lg:mt-0">Sign Out</button>
     </div>
     {/if}
