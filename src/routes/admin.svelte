@@ -1,17 +1,22 @@
-<script>
-    import supabase from '$lib/db'
+<script context="module">
+  import supabase from '$lib/db'
 
-    let formData = [];
-    let loading = false;
-
-    async function getData() {
-      let { data, error } = await supabase
+  export async function load({ error, status }) {
+    let { data, err } = await supabase
       .from('fill_week')
       .select()
-      if (error) throw new Error(error.message)
-      formData = data
-      return
-    }
+      if (err) throw new Error(err.message)
+		return {
+			props: {
+				formData: data
+			}
+		};
+	}
+</script>
+
+<script>
+    export let formData = [];
+    let loading = false;
 
     async function submitData() {
       loading = true
@@ -32,7 +37,7 @@
   <div class="text-white mt-10">
     <h1 class="font-bold text-4xl">Fill Week Data</h1>
   </div>
-  <form use:getData class="flex flex-col space-y-8 mt-10 text-white">
+  <form class="flex flex-col space-y-8 mt-10 text-white">
     {#if formData.length === 0}No Data to Display
     {:else}
     <table class="table-auto border-solid border border-light-blue-500">
