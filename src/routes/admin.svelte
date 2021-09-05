@@ -5,6 +5,7 @@
     let { data, err } = await supabase
       .from('fill_week')
       .select()
+      .order('name')
       if (err) throw new Error(err.message)
 		return {
 			props: {
