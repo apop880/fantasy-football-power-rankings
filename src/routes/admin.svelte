@@ -69,7 +69,7 @@
             <input class="text-gray-700 w-24" bind:value={formData[i].division} />
           </td>
           <td class="border-solid border border-light-blue-500 text-center">
-            <input class="text-gray-700 w-14" type=number bind:value={formData[i].place} />
+            <input class="text-gray-700 w-14" bind:value={formData[i].place} />
           </td>
         </tr>
         {/each}
