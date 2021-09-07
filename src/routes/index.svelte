@@ -1,7 +1,8 @@
 <script>
-    import { session } from '$app/stores';
+    import { session } from '$app/stores'
     import supabase from '$lib/db'
     import Voting from '$lib/Voting.svelte'
+    import Results from '$lib/Results.svelte'
 
     async function getVoting() {
       const { data, error } = await supabase
@@ -30,5 +31,6 @@
 {/await}
 
 <!--Previous results-->
+<Results />
 {/if}
 
