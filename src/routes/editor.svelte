@@ -15,7 +15,6 @@
 </script>
 
 <script>
-    import DBLock from '$lib/DBLock.svelte'
     export let data
 
     let loading = false;
@@ -32,8 +31,6 @@
       loading = false;
     }
 </script>
-
-<!-- <DBLock /> -->
 
 <section class="max-w-xl mx-auto p-4 flex flex-col gap-1">
 {#each data as row, i}
