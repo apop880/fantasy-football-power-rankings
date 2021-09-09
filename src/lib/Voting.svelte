@@ -1,8 +1,8 @@
 <script>
     import { session } from '$app/stores';
     import supabase from '$lib/db'
-    import { flip } from 'svelte/animate';
     import { onMount } from 'svelte';
+    import DragDrop from "svelte-dragdroplist";
 
     export let week;
     export let master_id;
@@ -15,7 +15,8 @@
         .from('current_week_data')
         .select('name, id')
       if (error) throw new Error(error.message)
-      teams = data
+      teams = data.map(x => ({...x, html: x.name}))
+      console.log(teams)
     })
 
     async function submitVote() {
@@ -34,48 +35,14 @@
         submitted = true;
     }
 
-    let hovering = false;
 
-  const drop = (event, target) => {
-    event.dataTransfer.dropEffect = 'move'; 
-    const start = parseInt(event.dataTransfer.getData("text/plain"));
-    const newTracklist = teams
-
-    if (start < target) {
-      newTracklist.splice(target + 1, 0, newTracklist[start]);
-      newTracklist.splice(start, 1);
-    } else {
-      newTracklist.splice(target, 0, newTracklist[start]);
-      newTracklist.splice(start + 1, 1);
-    }
-    teams = newTracklist
-    hovering = null
-  }
-
-  const dragstart = (event, i) => {
-    event.dataTransfer.effectAllowed = 'move';
-    event.dataTransfer.dropEffect = 'move';
-    const start = i;
-    event.dataTransfer.setData('text/plain', start);
-  }
 </script>
 
 {#if !submitted}
 <h1 class="text-center text-xl">Vote for {#if week === 0}Preseason{:else}Week {week}{/if} Power Rankings</h1>
 <h2 class="text-center text-lg">Drag and Drop to Rank Teams</h2>
-<div class="grid grid-cols-1 justify-center justify-items-center gap-y-1">
-    {#each teams as n, index  (n.name)}
-      <div class="w-4/5 text-center bg-gray-100 border-2 border-gray-600 rounded-md hover:bg-gray-800 hover:text-white"
-         animate:flip
-         draggable={true} 
-         on:dragstart={event => dragstart(event, index)}
-         on:drop|preventDefault={event => drop(event, index)}
-         ondragover="return false"
-         on:dragenter={() => hovering = index}
-         class:is-active={hovering === index}>
-         {n.name}	
-      </div>
-    {/each}
+<div class="max-w-xl mx-auto flex flex-col gap-2 justify-center justify-items-center">
+     <DragDrop bind:data={teams} />
     <button on:click={submitVote} class="inline-block text-sm px-4 py-2 leading-none border border-gray-600 rounded hover:text-white hover:bg-gray-600 mt-4 lg:mt-0">Submit Vote</button>
 </div>
 
