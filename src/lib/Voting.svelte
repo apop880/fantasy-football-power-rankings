@@ -13,9 +13,9 @@
     onMount(async () => {
       const { data, error } = await supabase
         .from('current_week_data')
-        .select('name, id')
+        .select('name, id, wins, losses, points, division, place')
       if (error) throw new Error(error.message)
-      teams = data.map(x => ({...x, html: x.name}))
+      teams = data.map(x => ({...x, html: `${x.name} (${x.wins}-{x.losses}, {x.place} in {x.division}`}))
       console.log(teams)
     })
 
