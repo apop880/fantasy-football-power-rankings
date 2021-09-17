@@ -38,7 +38,7 @@
   <div class="row-span-2 self-center"><strong>{row.ranking}</strong></div>
   <div class="col-span-5"><strong>{row.name}</strong> ({row.pts} pts{#if row.first_place_votes > 0}, {row.first_place_votes} first place vote{#if row.first_place_votes > 1}s{/if}{/if})</div>
   <div class="row-span-2 self-center">{#if row.week !== 0}<strong>{row.prev_ranking}</strong>{/if}</div>
-  <div class="col-span-5">{row.wins}-{row.losses}{#if row.week === 0} Last Season{/if}, {row.place} in {row.division}</div>
+  <div class="col-span-5">{row.wins}-{row.losses}{#if row.week === 0}&nbsp;Last Season{/if}, {row.place} in {row.division}</div>
   <div class="col-span-7 border-t border-gray-600"><textarea rows="6" placeholder="Team Description" class="border border-gray-500 mt-2 rounded-md w-full p-2" bind:value="{row.description}"></textarea></div>
 </div>
 {/each}
