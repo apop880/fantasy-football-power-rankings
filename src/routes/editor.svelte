@@ -37,7 +37,7 @@
 <div class="grid grid-cols-7 bg-gray-100 border-2 border-gray-600 rounded-md px-2">
   <div class="row-span-2 self-center"><strong>{row.ranking}</strong></div>
   <div class="col-span-5"><strong>{row.name}</strong> ({row.pts} pts{#if row.first_place_votes > 0}, {row.first_place_votes} first place vote{#if row.first_place_votes > 1}s{/if}{/if})</div>
-  <div class="row-span-2 self-center">
+  <div class="row-span-2 self-center inline-flex">
   {#if row.week !== 0}
   <strong>
   {#if row.prev_ranking === row.ranking}-
