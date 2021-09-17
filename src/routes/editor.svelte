@@ -37,9 +37,8 @@
 <div class="grid grid-cols-7 bg-gray-100 border-2 border-gray-600 rounded-md px-2">
   <div class="row-span-2 self-center"><strong>{row.ranking}</strong></div>
   <div class="col-span-5"><strong>{row.name}</strong> ({row.pts} pts{#if row.first_place_votes > 0}, {row.first_place_votes} first place vote{#if row.first_place_votes > 1}s{/if}{/if})</div>
-  <div class="row-span-2 self-center inline-flex">
+  <div class="row-span-2 self-center inline-flex font-bold">
   {#if row.week !== 0}
-  <strong>
   {#if row.prev_ranking === row.ranking}-
   {:else if row.prev_ranking > row.ranking}
   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -52,7 +51,6 @@
   </svg>
   {row.ranking - row.prev_ranking}
   {/if}
-  </strong>
   {/if}</div>
   <div class="col-span-5">{row.wins}-{row.losses}{#if row.week === 0}&nbsp;Last Season{/if}, {row.place} in {row.division}</div>
   <div class="col-span-7 border-t border-gray-600"><textarea rows="6" placeholder="Team Description" class="border border-gray-500 mt-2 rounded-md w-full p-2" bind:value="{row.description}"></textarea></div>
