@@ -15,7 +15,7 @@
         .from('current_week_data')
         .select('name, id, wins, losses, points, division, place')
       if (error) throw new Error(error.message)
-      teams = data.map(x => ({...x, html: `${x.name} (${x.wins}-${x.losses}, ${x.place} in ${x.division}), ${x.points / (x.wins+x.losses)} points per game`}))
+      teams = data.map(x => ({...x, html: `${x.name} (${x.wins}-${x.losses}, ${x.place} in ${x.division}), ${(x.points / (x.wins+x.losses)).toFixed(2)} points per game`}))
       console.log(teams)
     })
 
