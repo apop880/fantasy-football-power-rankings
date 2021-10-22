@@ -8,7 +8,7 @@
       let { data, err } = await supabase
         .from('final_results')
         .select()
-        .eq('week', 5)
+        .eq('week', 6)
       teams = data
     })
 </script>
